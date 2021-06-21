@@ -1,0 +1,7 @@
+.DS_Store
+myapp/.DS_Store
+.env_db
+.env
+myapp/static/
+db/
+staticfiles/

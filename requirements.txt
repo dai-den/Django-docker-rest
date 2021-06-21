@@ -1,0 +1,9 @@
+Django>=2.0,<2.4
+psycopg2>=2.8,<2.9
+djangorestframework
+channels
+channels-redis
+gunicorn==19.9.0
+PyPDF2
+reportlab
+django-cors-headers

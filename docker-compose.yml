@@ -1,0 +1,41 @@
+version: '3'
+
+services:
+  db:
+    image: postgres
+    environment:
+      - POSTGRES_DB=django_postgres
+      - POSTGRES_USER=django_postgres_user
+      - POSTGRES_PASSWORD=django_postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - postgres_log:/var/postgres_log
+  redis:
+    image: redis:5
+    ports: 
+      - 6379:6379
+  web:
+    build: .
+    command: python3 manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"
+    environment:
+      # 1ならデバックモード
+      - DEBUG=1
+      # setting.pyに記載されているSECRET_KEYを記入
+      - SECRET_KEY='e4d0z%45i2a(q7d%z(539q9-dq6nj(a4sfux4i^-v2g-l*!+4*'
+      - DATABASE_ENGINE=django.db.backends.postgresql
+      - DATABASE_DB=django_postgres
+      - DATABASE_USER=django_postgres_user
+      - DATABASE_PASSWORD=django_postgres
+      - DATABASE_HOST=db
+      - DATABASE_PORT=5432
+    depends_on:
+      - db
+      - redis
+volumes: 
+    postgres_data:
+    postgres_log:
+    
