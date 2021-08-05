@@ -41,7 +41,7 @@ CORS_ORIGIN_WHITELIST = (
     'http://127.0.0.1:3000',
     # まだフロントをデプロイしてないのでPC内のローカルサーバから
     # VPSに接続するのに
-    '*'
+    # '*'
 )
 
 # Application definition
